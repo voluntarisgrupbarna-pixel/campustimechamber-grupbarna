@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 // Cuando Ana cree el form en Fillout, sustituir FILLOUT_FORM_ID por el id real.
 // Embed format: https://forms.fillout.com/t/<formId>
-const FILLOUT_FORM_ID = '';
+const FILLOUT_FORM_ID = '4hMJiqdHvjus';
 
 export default function Inscripcion() {
   const filloutUrl = FILLOUT_FORM_ID
