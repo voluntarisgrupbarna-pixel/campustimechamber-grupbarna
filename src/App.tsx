@@ -8,6 +8,7 @@ import Pricing from './components/Pricing';
 import Inscripcion from './components/Inscripcion';
 import Location from './components/Location';
 import Footer from './components/Footer';
+import WhatsAppCTA from './components/WhatsAppCTA';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       <Inscripcion />
       <Location />
       <Footer />
+      <WhatsAppCTA origin="web" />
     </main>
   );
 }
