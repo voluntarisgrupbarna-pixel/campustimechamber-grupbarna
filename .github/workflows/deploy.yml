@@ -30,6 +30,10 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+        env:
+          VITE_GOOGLE_SHEET_WEBHOOK: ${{ secrets.VITE_GOOGLE_SHEET_WEBHOOK }}
+          VITE_WEBHOOK_SECRET: ${{ secrets.VITE_WEBHOOK_SECRET }}
+          VITE_ANA_WHATSAPP: ${{ secrets.VITE_ANA_WHATSAPP }}
 
       - uses: actions/configure-pages@v5
 
