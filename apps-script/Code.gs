@@ -1,18 +1,17 @@
 /**
- * Campus Timechamber 2026 — Backend Apps Script (dual-flow)
+ * Campus Timechamber 2026 — Backend Apps Script
  *
- * Recibe DOS tipos de POST distintos:
+ * NOTA: Las inscripciones formales del campus se gestionan en Fillout (plan
+ * gratuito hasta 1000 envíos/mes) y viven en el dashboard de Fillout. Este
+ * Apps Script SOLO procesa el flujo del mini-form "Habla con Ana por WhatsApp".
+ * El handler doPost también acepta payloads tipo `inscripcion` por si en el
+ * futuro migramos a un form custom propio (sin terceros).
  *
- *  1) WEBHOOK JOTFORM (inscripción formal del campus, JotForm 260962500106347)
- *     → registra en Sheet pestaña "Inscripciones"
- *     → crea/actualiza contact en Brevo en lista BREVO_LIST_INSCRIPCIONES
- *     → email a Ana
- *
- *  2) MINI-FORM "Habla con Ana por WhatsApp" (custom, desde la web/email)
- *     → registra en Sheet pestaña "WhatsApp Leads"
- *     → crea/actualiza contact en Brevo en lista BREVO_LIST_WHATSAPP
- *     → email a Ana con enlace wa.me prefilled
- *     → devuelve {ok:true, waUrl:"https://wa.me/..."} para que el frontend abra WhatsApp
+ * FLUJO ACTIVO — MINI-FORM "Habla con Ana por WhatsApp" (custom React, en la web/email)
+ *   → registra en Sheet pestaña "WhatsApp Leads"
+ *   → crea/actualiza contact en Brevo en lista BREVO_LIST_WHATSAPP
+ *   → email a Ana con resumen del lead
+ *   → devuelve {ok:true, waUrl:"https://wa.me/..."} para que el frontend abra WhatsApp
  *
  * Patrón: Apps Script + Sheet (backup) + Brevo (CRM) + email a Ana.
  *

@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 
-// JotForm form id — Campus Timechamber 2026 (inscripción formal)
-const JOTFORM_ID = '260962500106347';
-const JOTFORM_URL = `https://eu.jotform.com/${JOTFORM_ID}`;
+// Fillout form id — Campus Timechamber 2026 (inscripción formal, plan gratuito)
+const FILLOUT_FORM_ID = '4hMJiqdHvjus';
+const FILLOUT_URL = `https://forms.fillout.com/t/${FILLOUT_FORM_ID}`;
 
 export default function Inscripcion() {
   return (
@@ -29,7 +29,7 @@ export default function Inscripcion() {
 
         <div className="mt-12 fillout-frame">
           <iframe
-            src={JOTFORM_URL}
+            src={FILLOUT_URL}
             title="Formulario de inscripción Campus Timechamber 2026"
             loading="lazy"
             allow="payment"
