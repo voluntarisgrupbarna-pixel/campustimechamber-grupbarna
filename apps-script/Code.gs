@@ -22,7 +22,7 @@
  *   BREVO_LIST_INSCRIPCIONES      — list ID de "Campus Timechamber 2026 — Inscritos"
  *   BREVO_LIST_WHATSAPP           — list ID de "Campus Timechamber 2026 — Leads WhatsApp"
  *   NOTIFY_EMAIL                  — email Ana donde llegan avisos
- *   ANA_WHATSAPP                  — teléfono Ana (formato: 34688265230, sin +)
+ *   ANA_WHATSAPP                  — teléfono Ana (formato: 34698425153, sin +)
  *   SHARED_SECRET                 — string secreto. Debe ir en query param ?secret=...
  *   ALLOWED_ORIGINS               — orígenes permitidos para CORS, separados por coma
  *                                   (ej: "https://timechamber.skywork.website,http://localhost:5173")
@@ -436,7 +436,7 @@ function testJotform() {
       q4_apellidos: 'García',
       q5_fechadenac: '2014-08-15',
       q6_email: 'tutor@example.com',
-      q7_telefono: { full: '+34688265230' },
+      q7_telefono: { full: '+34698425153' },
       q8_semana: ['S5 · 21–25 JUL', 'S6 · 28 JUL – 1 AGO'],
       q9_nivel: 'Intermedio',
       q10_talla: 'M',

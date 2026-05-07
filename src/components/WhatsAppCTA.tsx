@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const WEBHOOK_URL = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK || '';
 const SHARED_SECRET = import.meta.env.VITE_WEBHOOK_SECRET || '';
 // Fallback: número WhatsApp de Ana (también está en Apps Script ANA_WHATSAPP)
-const ANA_WHATSAPP_FALLBACK = import.meta.env.VITE_ANA_WHATSAPP || '34688265230';
+const ANA_WHATSAPP_FALLBACK = import.meta.env.VITE_ANA_WHATSAPP || '34698425153';
 
 const SEMANAS = [
   { id: 'S1', label: 'S1 · 23–27 JUN · Flow Camp', estado: 'completa' },

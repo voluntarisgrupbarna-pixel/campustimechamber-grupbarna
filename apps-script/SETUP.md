@@ -55,7 +55,7 @@ Apps Script → ⚙️ **Project Settings** → **Script properties** → "Add s
 | `BREVO_LIST_INSCRIPCIONES` | list ID del paso 2 (Inscritos) |
 | `BREVO_LIST_WHATSAPP` | list ID del paso 2 (Leads WhatsApp) |
 | `NOTIFY_EMAIL` | tu email donde quieres recibir avisos |
-| `ANA_WHATSAPP` | tu teléfono sin `+` ni espacios. Ej: `34688265230` |
+| `ANA_WHATSAPP` | tu teléfono sin `+` ni espacios. Ej: `34698425153` |
 | `SHARED_SECRET` | string aleatorio largo, ej. `tch26-x9k2pq-secret`. Para que solo tú/JotForm/la web puedan llamar al webhook. |
 
 ### 6) Test desde el editor
@@ -95,7 +95,7 @@ La web del Campus (`/Users/ana/CAMPUS TIMECHAMBER`) usa un componente `WhatsAppC
 ```bash
 VITE_GOOGLE_SHEET_WEBHOOK=https://script.google.com/macros/s/.../exec
 VITE_WEBHOOK_SECRET=tch26-x9k2pq-secret
-VITE_ANA_WHATSAPP=34688265230
+VITE_ANA_WHATSAPP=34698425153
 ```
 
 Y para el deploy en GitHub Pages, añade los mismos valores como **secrets** del repo (Settings → Secrets and variables → Actions). El workflow CI los pasará al build.
