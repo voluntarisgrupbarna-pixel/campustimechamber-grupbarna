@@ -1,8 +1,8 @@
 # Setup — Apps Script Campus Timechamber 2026
 
-## ⚠️ Importante: JotForm fuera
+## ⚠️ Importante: dónde viven las inscripciones
 
-JotForm cobra desde 100 envíos/mes. Para el campus seguimos con **Fillout** (`4hMJiqdHvjus`), plan gratuito hasta 1000 envíos/mes. Las inscripciones formales viven en el **dashboard de Fillout** — entras y las ves ahí. Este backend NO procesa inscripciones formales hoy.
+Las inscripciones formales del campus van a **JotForm EU** (form id `260962500106347`, URL pública `https://eu.jotform.com/260962500106347`) — viven en el **dashboard de JotForm**. Este backend NO procesa inscripciones formales hoy.
 
 Lo que SÍ procesa este Apps Script:
 
@@ -52,7 +52,7 @@ Apps Script → ⚙️ **Project Settings** → **Script properties** → "Add s
 | `ANA_WHATSAPP` | `34698425153` |
 | `SHARED_SECRET` | string aleatorio largo, ej. `tch26-x9k2pq-secret`. Para que solo la web pueda llamar al webhook. |
 
-> No necesitas configurar `BREVO_LIST_INSCRIPCIONES` hoy (no entra ningún payload de "inscripción" porque seguimos con Fillout). El campo existe en `Code.gs` pero queda inactivo.
+> No necesitas configurar `BREVO_LIST_INSCRIPCIONES` hoy (no entra ningún payload de "inscripción" porque las inscripciones van a JotForm directamente). El campo existe en `Code.gs` pero queda inactivo.
 
 ### 6) Test desde el editor
 En el editor selecciona en el dropdown:
@@ -127,9 +127,10 @@ timestamp · nombre_tutor · telefono · email · edad_jugador
 ---
 
 ## 🔮 Futuro (opcional, cuando tengas tiempo)
-Si en algún momento Fillout también empieza a cobrar o quieres que las inscripciones formales se sincronicen automáticamente con Sheet + Brevo:
-1. Crear un componente `<InscripcionForm />` custom React en la web (similar al `WhatsAppCTA`).
-2. POST a este mismo Apps Script con `type: 'inscripcion'`.
-3. El parser ya está implementado — solo hay que conectar el frontend.
+Si quieres que las inscripciones formales (hoy en JotForm) se sincronicen automáticamente con Sheet + Brevo, hay dos vías:
 
-Coste cero, control total. 30 min de desarrollo cuando quieras.
+**Opción A — webhook desde JotForm:** en JotForm → Settings → Integrations → Webhooks añadir la URL del Apps Script (`?secret=...&type=inscripcion`). El parser ya acepta `type: 'inscripcion'`.
+
+**Opción B — form custom propio:** sustituir el iframe por un `<InscripcionForm />` React que postee directo al Apps Script.
+
+Coste cero, control total cuando quieras.

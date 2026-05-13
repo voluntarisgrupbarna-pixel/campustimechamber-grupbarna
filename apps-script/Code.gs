@@ -65,10 +65,19 @@ function doPost(e) {
   try {
     if (!checkSecret_(e)) return jsonResponse_({ ok: false, error: 'unauthorized' });
 
-    // Detectar formato: JSON body vs form-encoded (JotForm webhook nativo)
-    const ctype = (e.postData && e.postData.type) || '';
-    const isJson = ctype.indexOf('json') !== -1;
-    const body = isJson ? safeJson_(e.postData.contents) : (e.parameter || {});
+    // Detectar formato: JSON body vs form-encoded (JotForm webhook nativo).
+    // Apps Script POST desde fetch() suele venir con Content-Type=text/plain para evitar
+    // preflight CORS — siempre intentamos parsear postData.contents como JSON primero.
+    let body = {};
+    if (e.postData && e.postData.contents) {
+      const trimmed = e.postData.contents.trim();
+      if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+        body = safeJson_(trimmed) || {};
+      }
+    }
+    if (!body || Object.keys(body).length === 0) {
+      body = e.parameter || {};
+    }
 
     // Discriminar tipo de flujo:
     //   type=whatsapp explícito (mini-form)
