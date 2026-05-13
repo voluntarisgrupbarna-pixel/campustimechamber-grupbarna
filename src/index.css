@@ -115,7 +115,7 @@ select.wa-input option { background: #18181b; color: #fff; }
 .btn-ghost:hover { border-color: var(--color-gold); color: var(--color-gold); }
 
 /* Iframe container responsive */
-.fillout-frame {
+.jotform-frame {
   position: relative;
   width: 100%;
   min-height: 720px;
@@ -124,7 +124,7 @@ select.wa-input option { background: #18181b; color: #fff; }
   border-radius: 1.5rem;
   overflow: hidden;
 }
-.fillout-frame iframe {
+.jotform-frame iframe {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -133,5 +133,5 @@ select.wa-input option { background: #18181b; color: #fff; }
 }
 
 @media (max-width: 768px) {
-  .fillout-frame { min-height: 900px; }
+  .jotform-frame { min-height: 900px; }
 }
