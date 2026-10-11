@@ -33,9 +33,17 @@ const EMPTY: FormState = {
   edadJugador: '', semana: '', como: '', motivo: ''
 };
 
-type Props = { origin?: string };
+type Props = {
+  origin?: string;
+  campusName?: string;
+  semanas?: { id: string; label: string; estado: string }[];
+};
 
-export default function WhatsAppCTA({ origin = 'web' }: Props) {
+export default function WhatsAppCTA({
+  origin = 'web',
+  campusName = 'Campus Timechamber 2026',
+  semanas = SEMANAS,
+}: Props) {
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -99,7 +107,7 @@ export default function WhatsAppCTA({ origin = 'web' }: Props) {
     if (!waUrl) {
       const txt = [
         `Hola Ana 👋 soy ${form.nombre}.`,
-        'Quiero info del Campus Timechamber 2026.',
+        `Quiero info del ${campusName}.`,
         form.edadJugador ? `Mi hij@ tiene ${form.edadJugador} años.` : '',
         form.semana ? `Me interesa la semana ${form.semana}.` : '',
         form.motivo
@@ -221,14 +229,14 @@ export default function WhatsAppCTA({ origin = 'web' }: Props) {
                   </Field>
                 </div>
 
-                <Field label="Semana de interés">
+                <Field label="Turno de interés">
                   <select
                     value={form.semana}
                     onChange={(e) => update('semana', e.target.value)}
                     className="wa-input"
                   >
                     <option value="">—</option>
-                    {SEMANAS.map(s => (
+                    {semanas.map(s => (
                       <option key={s.id} value={s.label}>{s.label}</option>
                     ))}
                   </select>
