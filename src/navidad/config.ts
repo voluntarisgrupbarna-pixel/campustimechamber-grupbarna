@@ -1,8 +1,10 @@
 // Datos editables del Campus de Navidad. Provisionales hasta confirmar con la junta:
 // fechas, turnos y formulario de inscripción.
 
-// ID del formulario JotForm de Navidad. Vacío = se muestra el botón de WhatsApp en su lugar.
-export const JOTFORM_FORM_ID = '';
+// URL pública del formulario de Salesforce (Experience Cloud / Salesforce Sites / Pardot form).
+// Se puede fijar aquí o con la variable VITE_SALESFORCE_FORM_URL al compilar.
+// Vacío = se muestra el botón de WhatsApp en su lugar.
+export const SALESFORCE_FORM_URL: string = import.meta.env.VITE_SALESFORCE_FORM_URL || '';
 
 export const CAMPUS_NAME = 'Campus de Navidad Timechamber 2026';
 

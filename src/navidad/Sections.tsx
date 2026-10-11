@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Check, Trophy, Gift, Zap, Users, MapPin, ExternalLink, MessageCircle } from 'lucide-react';
-import { TURNOS, JOTFORM_FORM_ID } from './config';
+import { TURNOS, SALESFORCE_FORM_URL } from './config';
 
 const reveal = {
   initial: { opacity: 0, y: 16 },
@@ -181,10 +181,10 @@ export function Inscripcion() {
         <Heading tag="Inscripción" text="Plazas limitadas por turno y categoría.">
           Asegura <span className="text-gradient-gold">tu plaza</span>
         </Heading>
-        {JOTFORM_FORM_ID ? (
+        {SALESFORCE_FORM_URL ? (
           <div className="mt-12 jotform-frame">
             <iframe
-              src={`https://eu.jotform.com/${JOTFORM_FORM_ID}`}
+              src={SALESFORCE_FORM_URL}
               title="Formulario de inscripción Campus de Navidad Timechamber 2026"
               loading="lazy"
               allow="payment"
