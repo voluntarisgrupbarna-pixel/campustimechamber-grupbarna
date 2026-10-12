@@ -11,13 +11,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  build: {
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html'),
-        navidad: path.resolve(__dirname, 'navidad/index.html'),
-      },
-    },
-  },
   server: { host: true, port: 5173 },
 });

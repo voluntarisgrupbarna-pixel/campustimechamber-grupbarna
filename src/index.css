@@ -1,65 +1,116 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Bebas+Neue&family=Roboto+Mono:wght@400;500&display=swap');
 @import 'tailwindcss';
 
-@theme {
-  --color-bg: #050507;
-  --color-surface: #0d0d12;
-  --color-surface-2: #16161e;
-  --color-border: #23232e;
-  --color-fg: #f5f5f7;
-  --color-muted: #9b9ba8;
-  --color-gold: #ffd400;
-  --color-gold-soft: #ffe97a;
+/* Los colores salen de variables --c-* que define cada campus (data-campus en <html>). */
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-border: var(--c-border);
+  --color-fg: var(--c-fg);
+  --color-muted: var(--c-muted);
+  --color-gold: var(--c-gold);
+  --color-gold-soft: var(--c-gold-soft);
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
 
   --font-display: 'Bebas Neue', system-ui, sans-serif;
   --font-sans: 'Montserrat', system-ui, sans-serif;
   --font-mono: 'Roboto Mono', ui-monospace, monospace;
 }
 
-html, body, #root { height: 100%; }
+/* Verano: negro y amarillo */
+:root, [data-campus='verano'] {
+  --c-bg: #050507; --c-surface: #0d0d12; --c-surface-2: #16161e; --c-border: #23232e;
+  --c-fg: #f5f5f7; --c-muted: #9b9ba8;
+  --c-gold: #ffd400; --c-gold-soft: #ffe97a;
+  --c-accent: #ffd400; --c-accent-soft: #ffd400; --c-accent-fg: #000;
+  --c-btn-from: #ffd400; --c-btn-to: #ffae00; --c-btn-fg: #000; --c-btn-glow: rgba(255, 212, 0, 0.5);
+  --c-tint: rgba(255, 212, 0, 0.04); --c-glow: rgba(255, 212, 0, 0.18);
+  --c-ov-top: rgba(0, 0, 0, 0.2); --c-ov-bot: rgba(0, 0, 0, 0.85);
+  --c-g1: #ffe97a; --c-g2: #ffd400; --c-g3: #b88f00;
+  --c-select: #ffd400; --c-select-fg: #000;
+}
+
+/* Navidad: verde pino, rojo y dorado */
+[data-campus='navidad'] {
+  --c-bg: #0a1a14; --c-surface: #0f2a20; --c-surface-2: #163828; --c-border: #24503b;
+  --c-fg: #fdf6ec; --c-muted: #aec3b7;
+  --c-gold: #ffc93c; --c-gold-soft: #ffe08a;
+  --c-accent: #d62839; --c-accent-soft: #ff6b78; --c-accent-fg: #fff;
+  --c-btn-from: #e23a4b; --c-btn-to: #b3101f; --c-btn-fg: #fff; --c-btn-glow: rgba(214, 40, 57, 0.6);
+  --c-tint: rgba(255, 201, 60, 0.06); --c-glow: rgba(214, 40, 57, 0.28);
+  --c-ov-top: rgba(10, 26, 20, 0.78); --c-ov-bot: rgba(10, 26, 20, 0.95);
+  --c-g1: #ffe08a; --c-g2: #ffc93c; --c-g3: #d99a00;
+  --c-select: #d62839; --c-select-fg: #fff;
+}
+
+/* Semana Santa: violeta de primavera y ámbar */
+[data-campus='semana-santa'] {
+  --c-bg: #140d24; --c-surface: #1c1233; --c-surface-2: #26194a; --c-border: #3a2a63;
+  --c-fg: #f8f4ff; --c-muted: #b9aed4;
+  --c-gold: #ffb347; --c-gold-soft: #ffd89a;
+  --c-accent: #8b5cf6; --c-accent-soft: #c4a6ff; --c-accent-fg: #fff;
+  --c-btn-from: #a07bff; --c-btn-to: #6d3fe0; --c-btn-fg: #fff; --c-btn-glow: rgba(139, 92, 246, 0.55);
+  --c-tint: rgba(255, 179, 71, 0.06); --c-glow: rgba(139, 92, 246, 0.3);
+  --c-ov-top: rgba(20, 13, 36, 0.7); --c-ov-bot: rgba(20, 13, 36, 0.94);
+  --c-g1: #ffd89a; --c-g2: #ffb347; --c-g3: #e08a1a;
+  --c-select: #8b5cf6; --c-select-fg: #fff;
+}
+
+html, body, #root { min-height: 100%; }
 html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--color-bg);
-  color: var(--color-fg);
+  background: var(--c-bg);
+  color: var(--c-fg);
   font-family: var(--font-sans);
   font-feature-settings: 'ss01';
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.3s ease;
 }
 
-::selection { background: var(--color-gold); color: #000; }
+::selection { background: var(--c-select); color: var(--c-select-fg); }
 
 .font-display { font-family: var(--font-display); letter-spacing: 0.02em; }
 .font-mono { font-family: var(--font-mono); }
 
-/* Subtle gold gradient text */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #ffe97a 0%, #ffd400 50%, #b88f00 100%);
+  background: linear-gradient(135deg, var(--c-g1) 0%, var(--c-g2) 50%, var(--c-g3) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Reusable card surface */
 .card-surface {
-  background: linear-gradient(160deg, rgba(255, 212, 0, 0.04) 0%, rgba(13, 13, 18, 0.96) 60%);
-  border: 1px solid var(--color-border);
+  position: relative;
+  background: linear-gradient(160deg, var(--c-tint) 0%, color-mix(in srgb, var(--c-surface) 96%, transparent) 60%);
+  border: 1px solid var(--c-border);
   border-radius: 1.25rem;
 }
 
-/* Hero noise + vignette */
 .hero-vignette {
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(255, 212, 0, 0.18) 0%, transparent 55%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%);
+    radial-gradient(ellipse at 50% 30%, var(--c-glow) 0%, transparent 55%),
+    linear-gradient(180deg, var(--c-ov-top) 0%, var(--c-ov-bot) 100%);
 }
 
-/* Smooth section transitions */
-section { scroll-margin-top: 80px; }
+section { scroll-margin-top: 120px; }
 
-/* Pretty button base */
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--c-accent);
+  color: var(--c-accent-fg);
+}
+
 .btn-gold {
   display: inline-flex;
   align-items: center;
@@ -70,13 +121,30 @@ section { scroll-margin-top: 80px; }
   letter-spacing: 0.08em;
   font-size: 0.9rem;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #ffd400, #ffae00);
-  color: #000;
+  background: linear-gradient(135deg, var(--c-btn-from), var(--c-btn-to));
+  color: var(--c-btn-fg);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 10px 30px -10px rgba(255, 212, 0, 0.5);
+  box-shadow: 0 10px 30px -10px var(--c-btn-glow);
 }
-.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px rgba(255, 212, 0, 0.7); }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px var(--c-btn-glow); }
 .btn-gold:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid var(--c-border);
+  background: transparent;
+  color: var(--c-fg);
+  transition: all 0.2s ease;
+}
+.btn-ghost:hover { border-color: var(--c-gold); color: var(--c-gold); }
 
 .wa-input {
   width: 100%;
@@ -89,49 +157,54 @@ section { scroll-margin-top: 80px; }
   outline: none;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
-.wa-input:focus {
-  border-color: #25d366;
-  background: rgba(255, 255, 255, 0.08);
-}
+.wa-input:focus { border-color: #25d366; background: rgba(255, 255, 255, 0.08); }
 .wa-input::placeholder { color: rgba(255, 255, 255, 0.35); }
 select.wa-input { appearance: none; }
 select.wa-input option { background: #18181b; color: #fff; }
 
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.9rem 1.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.9rem;
-  border-radius: 9999px;
-  border: 1px solid var(--color-border);
-  background: transparent;
-  color: var(--color-fg);
-  transition: all 0.2s ease;
-}
-.btn-ghost:hover { border-color: var(--color-gold); color: var(--color-gold); }
-
-/* Iframe container responsive */
 .jotform-frame {
   position: relative;
   width: 100%;
   min-height: 720px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 1.5rem;
   overflow: hidden;
 }
-.jotform-frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
+.jotform-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media (max-width: 768px) { .jotform-frame { min-height: 900px; } }
 
-@media (max-width: 768px) {
-  .jotform-frame { min-height: 900px; }
+/* Selector de campus */
+.campus-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: var(--c-muted);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.campus-tab:hover { color: var(--c-fg); }
+.campus-tab[aria-selected='true'] { background: var(--c-accent); color: var(--c-accent-fg); }
+.campus-tab:focus-visible, .btn-gold:focus-visible, .btn-ghost:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 2px; }
+
+/* Guirnalda de luces (solo Navidad) */
+.lights { display: flex; justify-content: space-around; list-style: none; margin: 0; padding: 0; pointer-events: none; }
+.lights li { position: relative; width: 10px; height: 14px; margin-top: 4px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: twinkle 2.4s ease-in-out infinite; }
+.lights li::before { content: ''; position: absolute; top: -5px; left: 2px; width: 6px; height: 6px; background: #3b3b3b; border-radius: 1px; }
+.lights li:nth-child(4n+1) { background: #ff4d5e; box-shadow: 0 2px 12px 3px rgba(255, 77, 94, 0.7); animation-delay: 0s; }
+.lights li:nth-child(4n+2) { background: #ffc93c; box-shadow: 0 2px 12px 3px rgba(255, 201, 60, 0.7); animation-delay: 0.6s; }
+.lights li:nth-child(4n+3) { background: #3ddc84; box-shadow: 0 2px 12px 3px rgba(61, 220, 132, 0.6); animation-delay: 1.2s; }
+.lights li:nth-child(4n+4) { background: #fff; box-shadow: 0 2px 12px 3px rgba(255, 255, 255, 0.6); animation-delay: 1.8s; }
+@keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .lights li { animation: none; }
+  html { scroll-behavior: auto; }
 }
